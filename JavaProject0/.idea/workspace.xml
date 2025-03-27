@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed57381c-cd98-4108-a2df-6e953cfb4a3b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/excel/example/PdfFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book_infomation.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/book_infomation.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/excel/example/BookInfoToPDF_itext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/excel/example/BookInfoToPDF_itext.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,10 +38,12 @@
     "Application.BookInfoToPDF_itext.executor": "Run",
     "Application.ExcelExample.executor": "Run",
     "Application.ExcelWriter.executor": "Run",
+    "Application.PdfFile.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/kimyena/Documents/web/FastCampus/JavaProject0",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -53,6 +57,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
@@ -76,7 +83,7 @@
       <updated>1743054136751</updated>
       <workItem from="1743054137696" duration="353000" />
       <workItem from="1743054837000" duration="1536000" />
-      <workItem from="1743064535398" duration="12304000" />
+      <workItem from="1743064535398" duration="13961000" />
     </task>
     <servers />
   </component>

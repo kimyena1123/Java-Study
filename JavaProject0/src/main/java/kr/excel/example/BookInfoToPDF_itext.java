@@ -18,9 +18,9 @@ import java.util.HashMap;
 public class BookInfoToPDF_itext {
     public static void main(String[] args) {
         HashMap<String, String> bookInfo = new HashMap<>();
-        bookInfo.put("title", "java");
-        bookInfo.put("autor", "kim yena");
-        bookInfo.put("publisher", "korea");
+        bookInfo.put("title", "한글 자바");
+        bookInfo.put("autor", "홍길동");
+        bookInfo.put("publisher", "한글 출판사");
         bookInfo.put("year", String.valueOf(Year.now().getValue()));
         bookInfo.put("price", "25000");
         bookInfo.put("pages", "400");
@@ -36,8 +36,8 @@ public class BookInfoToPDF_itext {
             Document document = new Document(pdf);
 
             //폰트 생성 및 추가
-//            PdfFont font = PdfFontFactory.createFont("NANUMGOTHICLIGHT.TTF", PdfEncodings.IDENTITY_H, true);
-//            document.setFont(font);
+            PdfFont font = PdfFontFactory.createFont("NANUMGOTHICLIGHT.TTF", PdfEncodings.IDENTITY_H, true);
+            document.setFont(font);
 
             //책 정보를 문단으로 생성하여 Document에 추가
             for(String key : bookInfo.keySet()){
