@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed57381c-cd98-4108-a2df-6e953cfb4a3b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/excel/entity/MemberVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +33,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.BookInfoToPDF_itext.executor": "Run",
     "Application.ExcelExample.executor": "Run",
     "Application.ExcelWriter.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -47,6 +48,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -74,7 +76,7 @@
       <updated>1743054136751</updated>
       <workItem from="1743054137696" duration="353000" />
       <workItem from="1743054837000" duration="1536000" />
-      <workItem from="1743064535398" duration="8108000" />
+      <workItem from="1743064535398" duration="12304000" />
     </task>
     <servers />
   </component>
