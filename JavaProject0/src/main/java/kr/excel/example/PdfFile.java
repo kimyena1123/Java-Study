@@ -96,10 +96,8 @@ public class PdfFile {
             Cell imageCell = new Cell().add(img.setAutoScale(true));
             table.addCell(imageCell);
         }
-
         document.add(table);
         document.close();
-
     }
 
     private static List<Map<String, String>> createDummyData(){

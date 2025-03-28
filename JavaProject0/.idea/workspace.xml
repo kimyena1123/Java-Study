@@ -5,10 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed57381c-cd98-4108-a2df-6e953cfb4a3b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/excel/example/PdfFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book_infomation.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/book_infomation.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/excel/example/BookInfoToPDF_itext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/excel/example/BookInfoToPDF_itext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/excel/example/PdfFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/excel/example/PdfFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/NanumGothicLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/src/main/java/kr/book/search/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/src/main/java/kr/book/search/BookSearchMain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/src/main/java/kr/book/search/KakaoBookApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/src/main/java/kr/book/search/PdfGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaProject02/도서목록.pdf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,29 +45,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BookInfoToPDF_itext.executor": "Run",
-    "Application.ExcelExample.executor": "Run",
-    "Application.ExcelWriter.executor": "Run",
-    "Application.PdfFile.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/kimyena/Documents/web/FastCampus/JavaProject0",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BookInfoToPDF_itext.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ExcelExample.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ExcelWriter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PdfFile.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/kimyena/Documents/web/FastCampus/JavaProject0&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -83,7 +95,8 @@
       <updated>1743054136751</updated>
       <workItem from="1743054137696" duration="353000" />
       <workItem from="1743054837000" duration="1536000" />
-      <workItem from="1743064535398" duration="13961000" />
+      <workItem from="1743064535398" duration="24490000" />
+      <workItem from="1743169818994" duration="611000" />
     </task>
     <servers />
   </component>
