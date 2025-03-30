@@ -1,0 +1,30 @@
+{
+  "Key": "value",
+  "array": [  //타입 동일해야 함
+    10,
+    20,
+    30
+  ],
+  "string_array": [
+    "홍길동", "나길동", "박길동"
+  ],
+  "object_array" : [
+    { //object
+      "name" : "홍길동" //object는 또다시 json을 담을 수 있다.  같은 배열 안에 있는 object의 json들의 데이터 형태는 동일해야 한다
+    },
+    {
+      "name" : "나길동"
+    }, //object
+    {
+      "name" : "박길동"
+    }, //object
+  ]
+}
+
+1. snake case
+언더바(_)로 구분
+ex) user_name
+
+2. camel case
+소문자로 시작, 구분은 대문자로
+ex) userName
