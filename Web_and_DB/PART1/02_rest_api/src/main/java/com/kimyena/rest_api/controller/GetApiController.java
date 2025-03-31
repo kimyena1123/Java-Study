@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController //Rest API를 처리하는 Controller
 @RequestMapping("/api") //어떠한 주소를 받는지 지정
-public class RestApiController {
+public class GetApiController {
 
     @GetMapping(path = "/hello") // http://localhost:8080/api/hello
     public String hello(){
