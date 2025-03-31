@@ -15,4 +15,5 @@ public class UserRequest {
     private String userName;
     private Integer user_age;
     private String user_email;
+    private Boolean isKorean; //is_korean
 }
