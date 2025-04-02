@@ -4,7 +4,7 @@ import com.kimyena.exception.controller.RestApiBController;
 import com.kimyena.exception.controller.RestApiController;
 import com.kimyena.exception.model.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,16 +15,8 @@ import java.util.NoSuchElementException;
 @Slf4j
 //@RestControllerAdvice(basePackages = "com.kimyena.exception.controller") //Rest Api가 사용하는 곳에 예외가 일어나는 것을 감지한다. <- 모든 controller에서 나오는 예외를 잡아준다
 @RestControllerAdvice(basePackageClasses = {RestApiController.class, RestApiBController.class})
+@Order(1)
 public class RestApiExceptionHandler {
-
-    @ExceptionHandler(value = {Exception.class}) //모든 예외를 잡음
-    public ResponseEntity exception(
-            Exception e
-    ){
-        log.error("RestApiExceptionHandler" , e);
-
-        return ResponseEntity.status(200).build();
-    }
 
     @ExceptionHandler(value = {IndexOutOfBoundsException.class})
     public ResponseEntity outOfBound(IndexOutOfBoundsException e){
