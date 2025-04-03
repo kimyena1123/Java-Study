@@ -47,8 +47,10 @@ public class UserRegisterRequest {
     private String phoneNumber;
 
     @FutureOrPresent
-    @YearMonth
-    private String registerAt; //"register_at": "2025-04-02T18:00:00" 형식
+    private LocalDateTime registerAt; //"register_at": "2025-04-02T18:00:00" 형식
+
+    @YearMonth(pattern = "yyyy-MM") //"birth_day_year_month":"2025-04"
+    private String birthDayYearMonth;
 
     @AssertTrue(message = "name or nickName 둘 중 하나는 반드시 1개는 존재해야 합니다.") //@AsserTrue는 is라는 메서드에 반드시 붙여줘야 한다
     public boolean isNameCheck(){
