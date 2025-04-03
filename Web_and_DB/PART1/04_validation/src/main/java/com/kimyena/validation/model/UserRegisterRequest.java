@@ -3,6 +3,7 @@ package com.kimyena.validation.model;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.kimyena.validation.annotation.PhoneNumber;
+import com.kimyena.validation.annotation.YearMonth;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,7 +47,8 @@ public class UserRegisterRequest {
     private String phoneNumber;
 
     @FutureOrPresent
-    private LocalDateTime registerAt; //"register_at": "2025-04-02T18:00:00" 형식
+    @YearMonth
+    private String registerAt; //"register_at": "2025-04-02T18:00:00" 형식
 
     @AssertTrue(message = "name or nickName 둘 중 하나는 반드시 1개는 존재해야 합니다.") //@AsserTrue는 is라는 메서드에 반드시 붙여줘야 한다
     public boolean isNameCheck(){
