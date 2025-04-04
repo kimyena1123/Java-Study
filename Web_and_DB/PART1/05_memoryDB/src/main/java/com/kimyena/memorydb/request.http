@@ -1,0 +1,53 @@
+
+### create - 성공하면 id 값이 생겨서, id : 1
+PUT http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "name": "홍길동",
+  "score": 100
+}
+
+### create - 성공하면 id 값이 생겨서, id : 2
+PUT http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "name": "나길동",
+  "score": 99
+}
+
+
+### read - findall
+GET http://localhost:8080/api/user/all
+### 아래와 같이 나온다.
+#[
+#{
+#    "id": 1,
+#    "name": "홍길동",
+#    "score": 100
+#  },
+#  {
+#    "id": 2,
+#"name": "나길동",
+#"score": 99
+#}
+#]
+
+### update
+PUT http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "나길동",
+  "score": 100
+}
+
+
+
+
+
+
+
+

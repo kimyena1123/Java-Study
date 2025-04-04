@@ -4,7 +4,7 @@ import com.kimyena.memorydb.entity.Entity;
 
 import java.util.*;
 
-abstract class SimpleDataRepository<T extends Entity, ID extends Long> implements DataRepository<T, ID> {
+public abstract class SimpleDataRepository<T extends Entity, ID extends Long> implements DataRepository<T, ID> {
 
     private List<T> dataList = new ArrayList<>();
     private static long index = 0;
@@ -31,7 +31,7 @@ abstract class SimpleDataRepository<T extends Entity, ID extends Long> implement
                         .findFirst();
 
         if(prevData.isPresent()) { //기존 데이터가 있는 경우 -> update -> 그 기존 데이터 삭제하고, 다시 집어넣음
-            dataList.remove(prevData);
+            dataList.remove(prevData.get()); //dataList.remove(prevData); 이렇게 했다면 에러발생: 우리가 가져온 건 Optional<UserEntity>이다. UserEntity가 들어있기에 삭제가 안될 거다.
             dataList.add(data);
         }else{ //기존 데이터가 없는 경우 -> create
             index++;
@@ -70,7 +70,7 @@ abstract class SimpleDataRepository<T extends Entity, ID extends Long> implement
                 .findFirst();
 
         if(deleteEntity.isPresent()) {
-            dataList.remove(deleteEntity);
+            dataList.remove(deleteEntity.get());
         }
     }
 
