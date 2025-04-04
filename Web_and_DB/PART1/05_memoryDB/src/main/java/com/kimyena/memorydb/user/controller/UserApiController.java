@@ -51,4 +51,12 @@ public class UserApiController {
     ){
         userService.delete(userId);
     }
+
+    //매개변수의 점수보다 같거나 큰 경우의 정보를 리턴
+    @GetMapping("/greater-then/score")
+    public List<UserEntity> filterScore(
+            @RequestParam int score
+    ){
+        return userService.filterScore(score);
+    }
 }

@@ -17,6 +17,15 @@ Content-Type: application/json
   "score": 99
 }
 
+### create - 성공하면 id 값이 생겨서, id : 3
+PUT http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "name": "박박박",
+  "score": 20
+}
+
 
 ### read - findall
 GET http://localhost:8080/api/user/all
@@ -49,6 +58,10 @@ Content-Type: application/json
 
 ### delete
 DELETE http://localhost:8080/api/user/delete/id/3
+
+
+### 매개변수의 점수보다 같거나 큰 경우의 정보를 리턴 - RequestParam 사용
+GET http://localhost:8080/api/user/greater-then/score?score=70
 
 
 
