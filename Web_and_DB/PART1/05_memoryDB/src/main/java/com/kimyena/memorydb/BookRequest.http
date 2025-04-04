@@ -1,0 +1,81 @@
+
+### create - 성공하면 id 값이 생겨서, id : 1
+PUT http://localhost:8080/api/book
+Content-Type: application/json
+
+{
+  "name": "책1",
+  "category" : "category1",
+  "amount": 15000
+
+}
+
+### create - 성공하면 id 값이 생겨서, id : 2
+PUT http://localhost:8080/api/book
+Content-Type: application/json
+
+{
+  "name": "책2",
+  "category" : "category2",
+  "amount": 20000
+
+}
+
+### create - 성공하면 id 값이 생겨서, id : 3
+PUT http://localhost:8080/api/book
+Content-Type: application/json
+
+{
+  "name": "책3",
+  "category" : "category3",
+  "amount": 25000
+
+}
+
+
+### read - findall
+GET http://localhost:8080/api/book/all
+### 아래와 같이 나온다.
+#[
+#{
+#    "id": 1,
+#    "name": "홍길동",
+#    "score": 100
+#  },
+#  {
+#    "id": 2,
+#"name": "나길동",
+#"score": 99
+#}
+#]
+
+### read - 한개의 정보만
+GET http://localhost:8080/api/book/read/id/2
+
+### update
+PUT http://localhost:8080/api/book
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "책2",
+  "category" : "category2",
+  "amount": 22222
+
+}
+
+### delete
+DELETE http://localhost:8080/api/book/delete/id/2
+
+
+### 매개변수의 점수보다 같거나 큰 경우의 정보를 리턴 - RequestParam 사용
+GET http://localhost:8080/api/book/greater-then/score?score=20000
+
+
+
+
+
+
+
+
+
