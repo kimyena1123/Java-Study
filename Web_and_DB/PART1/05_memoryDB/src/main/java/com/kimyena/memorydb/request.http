@@ -34,6 +34,9 @@ GET http://localhost:8080/api/user/all
 #}
 #]
 
+### read - 한개의 정보만
+GET http://localhost:8080/api/user/read/id/2
+
 ### update
 PUT http://localhost:8080/api/user
 Content-Type: application/json
@@ -43,6 +46,10 @@ Content-Type: application/json
   "name": "나길동",
   "score": 100
 }
+
+### delete
+DELETE http://localhost:8080/api/user/delete/id/3
+
 
 
 
