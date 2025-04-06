@@ -1,0 +1,33 @@
+#  Mac의 MySQL과 같은 DB를 사용하려면?
+# docker-compose.yaml에서 MySQL 컨테이너를 제거하고,
+# 대신 Mac에 설치된 MySQL에 직접 연결하도록 설정해야 합니다.
+
+version: "3"
+services:
+  app:
+    container_name: my_app
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=host.docker.internal  # Mac에 설치된 MySQL 사용
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=1123
+      - DB_NAME=mydb
+
+  db:
+    image: mysql:8.4  # <-- ❌ 이 부분을 삭제하거나 코멘트 처리 가능
+    restart: always
+    command:
+      - --lower_case_table_names=1
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=mydb
+      - MYSQL_ROOT_PASSWORD=1123
+      - TZ=Asia/Seoul
+    volumes:
+      - ./mysql_data_Mac:/var/lib/mysql
