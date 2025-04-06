@@ -28,13 +28,14 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public void delete(Long id){
+    public void delete(UserEntity id){
         userRepository.delete(id);
     }
 
     //매개변수의 점수보다 같거나 큰경우의 정보를 리턴
     public List<UserEntity> filterScore(int score){
-        return userRepository.findAllScoreGreaterThen(score);
+        return null;
+//        return userRepository.findAllScoreGreaterThen(score);
     }
 
 }

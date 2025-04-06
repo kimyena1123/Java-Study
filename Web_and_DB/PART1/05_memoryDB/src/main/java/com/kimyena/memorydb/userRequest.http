@@ -26,6 +26,15 @@ Content-Type: application/json
   "score": 20
 }
 
+### create - 성공하면 id 값이 생겨서, id : 4
+PUT http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+"name": "김김김",
+"score": 40
+}
+
 
 ### read - findall
 GET http://localhost:8080/api/user/all
