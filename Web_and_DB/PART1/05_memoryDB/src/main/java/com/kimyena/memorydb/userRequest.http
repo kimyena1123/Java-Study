@@ -72,10 +72,17 @@ DELETE http://localhost:8080/api/user/delete/id/3
 ### 매개변수의 점수보다 같거나 큰 경우의 정보를 리턴 - RequestParam 사용
 GET http://localhost:8080/api/user/greater-then/score?score=70
 
+### 특정 점수보다는 크고, 특정 점수보다는 작은 - RequestParam 사용
+GET http://localhost:8080/api/user/min_max?min=30&max=90
 
+### 쿼리 메서드가 아닌 @Query로 sql 문법사용해보기. 기능은 위 메서드와 똑같음
+GET http://localhost:8080/api/user/min_max2?min=30&max=90
 
+### 쿼리 메서드도, jpql 문법도 아닌 sql(native sql)으로 접근해보기. 기능은 위 메서드와 똑같음
+GET http://localhost:8080/api/user/native_sql?min=30&max=90
 
-
+### 쿼리 메서드도, jpql 문법도 아닌 sql(native sql)으로 접근해보기. 쿼리문에서 ? 대신 별명으로 대체하기
+GET http://localhost:8080/api/user/native_sql2?min=30&max=90
 
 
 

@@ -23,3 +23,4 @@ PRIMARY KEY (`id`)
 SHOW tables;
 DROP TABLE user;
 
+select * From user where score > 40;

@@ -52,11 +52,49 @@ public class UserApiController {
 //        userService.delete(userId);
     }
 
+    //GET http://localhost:8080/api/user/greater-then/score?score=70
     //매개변수의 점수보다 같거나 큰 경우의 정보를 리턴
     @GetMapping("/greater-then/score")
     public List<UserEntity> filterScore(
             @RequestParam int score
     ){
         return userService.filterScore(score);
+    }
+
+    //GET http://localhost:8080/api/user/min_max?min=30&max=90
+    //매개변수의 점수보다는 크고, 특정 점수보다는 작은
+    @GetMapping("/min_max")
+    public List<UserEntity> filterScore(
+            @RequestParam int min,
+            @RequestParam int max
+    ){
+        return userService.filterScore(min, max);
+    }
+
+    //쿼리 메서드가 아닌 @Query로 jpql 문법사용해보기. 기능은 위 메서드와 똑같음
+    @GetMapping("/min_max2")
+    public List<UserEntity> score(
+            @RequestParam int min,
+            @RequestParam int max
+    ){
+        return userService.score(min, max);
+    }
+
+    //쿼리 메서드도, jpql 문법도 아닌 sql(native sql)으로 접근해보기. 기능은 위 메서드와 똑같음
+    @GetMapping("/native_sql")
+    public List<UserEntity> score2(
+            @RequestParam int min,
+            @RequestParam int max
+    ){
+        return userService.score2(min, max);
+    }
+
+    //쿼리 메서드도, jpql 문법도 아닌 sql(native sql)으로 접근해보기. 쿼리문에서 ? 대신 별명으로 대체하기
+    @GetMapping("/native_sql2")
+    public List<UserEntity> score3(
+            @RequestParam int min,
+            @RequestParam int max
+    ){
+        return userService.score3(min, max);
     }
 }
