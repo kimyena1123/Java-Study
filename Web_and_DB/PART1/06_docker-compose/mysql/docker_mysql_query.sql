@@ -8,6 +8,35 @@ CREATE TABLE user (
 
 SHOW tables;
 
+CREATE DATABASE user;
+USE user;
+CREATE TABLE `user`
+(
+    `id`    bigint(32)   NOT NULL AUTO_INCREMENT COMMENT 'index',
+    `name`  varchar(40)  NOT NULL COMMENT '사용자 이름',
+    `age`   int          NULL DEFAULT 1 COMMENT '사용자 나이',
+    `email` varchar(100) NULL DEFAULT '' COMMENT '이메일 주소',
+    PRIMARY KEY (`id`)
+);
+SHOW tables;
+select * from user;
+select * from mydb.user;
+
+INSERT INTO `user` (`name`, `age`, `email`) VALUE ('홍길동', 20, 'hong@gmail.com');
+INSERT INTO `user` (`name`, `age`) VALUE ('나길동', 22);
+INSERT INTO `user` (`name`, `age`, `email`) VALUE ('박길동', 1, 'park@gmail.com');
+
+UPDATE `user` SET `age` = 21 WHERE `name` = '나길동';
+UPDATE `user` SET `email` = 'na@gmail.com' WHERE `name` = '나길동';
+
+DELETE FROM `user` WHERE id = 3;
+
+CREATE DATABASE `user2`;
+DROP DATABASE `user2`;
+SHOW DATABASES;
+
+
+
 # ------------ 간단한 MySQL 쿼리 배우기1 ------------
 # SQL: 관계형 데이터베이스 관리 시스템의 데이터를 관리하기 위해 설계된 특수 목적의 프로그래밍 언어
 # DDL, DML, DCL이 있다.
