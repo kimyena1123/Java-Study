@@ -1,0 +1,5 @@
+### READ - 모든 정보 가져오기
+GET http://localhost:8080/api/user/find-all
+
+### 이름을 받아서 테이블에 정보 저장하기
+GET http://localhost:8080/api/user/name?name=김예나
