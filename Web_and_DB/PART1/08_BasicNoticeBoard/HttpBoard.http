@@ -1,0 +1,7 @@
+###
+POST http://localhost:8080/api/board
+Content-Type: application/json
+
+{
+  "board_name" : "Q&A 게시판"
+}

@@ -1,0 +1,11 @@
+### 게시글 작성
+POST http://localhost:8080/api/post
+Content-Type: application/json
+
+{
+  "user_name" : "홍길동",
+  "password" : "1111",
+  "email" : "hong@gmail.com",
+  "title" : "문의드립니다.",
+  "content" : "물건을 구매했는데, 배송이 오지 않습니다."
+}
