@@ -1,5 +1,6 @@
 package com.kimyena.basicnoticeboard.post.service;
 
+import com.kimyena.basicnoticeboard.board.db.BoardRepository;
 import com.kimyena.basicnoticeboard.post.db.PostEntity;
 import com.kimyena.basicnoticeboard.post.db.PostRepository;
 import com.kimyena.basicnoticeboard.post.model.PostRequest;
@@ -16,13 +17,15 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final BoardRepository boardRepository;
     private final ReplyService replyService;
 
     public PostEntity create(
             PostRequest postRequest
     ){
+        var boardEntity = boardRepository.findById(postRequest.getBoardId()).get();  // 임시 고정
         var entity = PostEntity.builder()
-                .boardId(1L) // 임시 고정
+                .board(boardEntity)
                 .userName(postRequest.getUserName())
                 .password(postRequest.getPassword())
                 .email(postRequest.getEmail())

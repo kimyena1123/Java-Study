@@ -1,5 +1,7 @@
 package com.kimyena.basicnoticeboard.post.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kimyena.basicnoticeboard.board.db.BoardEntity;
 import com.kimyena.basicnoticeboard.reply.db.ReplyEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,7 +23,11 @@ public class PostEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long boardId;
+//    private Long boardId;
+    @ManyToOne
+    @JsonIgnore
+    @ToString.Exclude
+    private BoardEntity board; // board + _id => board_id
 
     private String userName;
 

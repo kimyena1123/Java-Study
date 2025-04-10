@@ -2,10 +2,13 @@ package com.kimyena.basicnoticeboard.post.model;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import com.kimyena.basicnoticeboard.board.db.BoardEntity;
+import com.kimyena.basicnoticeboard.reply.db.ReplyEntity;
 import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,25 +17,24 @@ import lombok.*;
 @ToString
 @Builder
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class PostRequest {
+public class PostDto {
 
-    private Long boardId = 1L; //어떤 게시판에 게시물을 작성할건지.
+    private Long id;
 
-    //작성자, 비밀번호, email, 제목, 문의내용
-    @NotBlank
+    private Long boardId;
+
     private String userName;
 
-    @NotBlank
-    @Size(min = 4, max = 4)
     private String password;
 
-    @NotBlank
-    @Email
     private String email;
 
-    @NotBlank
+    private String status;
+
     private String title;
 
-    @NotBlank
     private String content;
+
+    private LocalDateTime postedAt;
+
 }
