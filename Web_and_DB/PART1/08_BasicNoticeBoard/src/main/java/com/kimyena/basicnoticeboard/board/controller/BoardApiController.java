@@ -3,6 +3,7 @@ package com.kimyena.basicnoticeboard.board.controller;
 import com.kimyena.basicnoticeboard.board.db.BoardEntity;
 import com.kimyena.basicnoticeboard.board.model.BoardRequest;
 import com.kimyena.basicnoticeboard.board.service.BoardService;
+import com.kimyena.basicnoticeboard.post.db.PostEntity;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +19,7 @@ public class BoardApiController { //요청을 받기 위해선 model 필요
 
     private final BoardService boardService;
 
+    //게시판 생성(예. Q&A 게시판, FAQ 게시판 등등..)
     @PostMapping("") //http://localhost:8080/api/board
     public BoardEntity create(
             @Valid
@@ -25,4 +27,6 @@ public class BoardApiController { //요청을 받기 위해선 model 필요
     ){
         return boardService.create(boardRequest);
     }
+
+
 }
