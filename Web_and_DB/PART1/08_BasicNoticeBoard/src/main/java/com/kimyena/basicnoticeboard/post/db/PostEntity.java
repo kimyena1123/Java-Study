@@ -1,9 +1,12 @@
 package com.kimyena.basicnoticeboard.post.db;
 
+import com.kimyena.basicnoticeboard.reply.db.ReplyEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,5 +38,7 @@ public class PostEntity {
 
     private LocalDateTime postedAt;
 
-
+    //게시물을 보여줄 때 댓글도 같이 보여줘야 하기에
+    @Transient
+    private List<ReplyEntity> replyList = Arrays.asList();
 }

@@ -1,5 +1,20 @@
-### GET request to example server
-GET https://examples.http-client.intellij.net/get
-    ?generated-in=IntelliJ IDEA
+### 게시물에 대한 댓글 달기
+POST http://localhost:8080/api/reply
+Content-Type: application/json
 
-###
+{
+  "post_id" : 1,
+  "user_name" : "관리자",
+  "password" : "0000",
+  "title" : "답변드립니다.",
+  "content": "고객님꼐서 주문하신 물품은 ...~~~"
+}
+
+### 게시글에 달린 댓글 열람
+POST http://localhost:8080/api/post/view
+Content-Type: application/json
+
+{
+  "post_id" : 1,
+  "password" : "1111"
+}

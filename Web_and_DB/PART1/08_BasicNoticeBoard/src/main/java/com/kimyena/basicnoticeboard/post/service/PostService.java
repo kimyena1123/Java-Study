@@ -4,6 +4,7 @@ import com.kimyena.basicnoticeboard.post.db.PostEntity;
 import com.kimyena.basicnoticeboard.post.db.PostRepository;
 import com.kimyena.basicnoticeboard.post.model.PostRequest;
 import com.kimyena.basicnoticeboard.post.model.PostViewRequest;
+import com.kimyena.basicnoticeboard.reply.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final ReplyService replyService;
 
     public PostEntity create(
             PostRequest postRequest
@@ -46,6 +48,11 @@ public class PostService {
                         var format = "패스워드가 맞지 않습니다. %s vs %s";
                         throw new RuntimeException(String.format(format, it.getPassword(), postViewRequest.getPassword()));
                     }
+
+                    //게시물을 보여줄 떄, 게시물에 달린 댓글도 같이 보여주기
+                    var replyList = replyService.findAllByPostId(it.getId());
+                    it.setReplyList(replyList);
+
                     return it;
                 }).orElseThrow(
                         () -> {
