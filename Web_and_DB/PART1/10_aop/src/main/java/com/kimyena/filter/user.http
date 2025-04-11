@@ -1,0 +1,14 @@
+### POST Register
+POST http://localhost:8080/api/user/register
+Content-Type: application/json
+
+{
+  "name" : "홍길동",
+  "phone_number" : "010-1111-1111",
+  "email" : "hone@gmail.com",
+  "age" : 10
+}
+
+
+### hello - interceptor
+GET http://localhost:8080/api/user/hello
