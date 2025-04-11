@@ -19,3 +19,7 @@ Content-Type: application/json
   "email" : "hone@gmail.com",
   "age" : 10
 }
+
+
+### hello - interceptor
+GET http://localhost:8080/api/user/hello
