@@ -1,12 +1,15 @@
 package com.kimyena.basicnoticeboard.post.service;
 
 import com.kimyena.basicnoticeboard.board.db.BoardRepository;
+import com.kimyena.basicnoticeboard.common.Api;
+import com.kimyena.basicnoticeboard.common.Pagination;
 import com.kimyena.basicnoticeboard.post.db.PostEntity;
 import com.kimyena.basicnoticeboard.post.db.PostRepository;
 import com.kimyena.basicnoticeboard.post.model.PostRequest;
 import com.kimyena.basicnoticeboard.post.model.PostViewRequest;
 import com.kimyena.basicnoticeboard.reply.service.ReplyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -61,8 +64,23 @@ public class PostService {
     }
 
     //게시물 전체 가져오기
-    public List<PostEntity> all(){
-        return postRepository.findAll();
+    public Api<List<PostEntity>> all(Pageable pageable){
+        var list = postRepository.findAll(pageable);
+
+        var pagination = Pagination.builder()
+                .page(list.getNumber()) //현재 몇번째 페이지에 있는지
+                .size(list.getSize())
+                .currentElements(list.getNumberOfElements()) //현재 몇개 가지고 있는지 -> 현재 페이지에 있는 element의 개수를 보여준다.
+                .totalElements(list.getTotalElements()) //주의) totalElements는 Long 타입이다.전체 개수가 많을 수 있기 떄문에 Integer가 아니라 Long으로 받아줘야 햔다.
+                .totalPage(list.getTotalPages())
+                .build();
+
+        var response = Api.<List<PostEntity>>builder()
+                .body(list.toList())
+                .pagination(pagination)
+                .build();
+
+        return response;
     }
 
     //게시물 삭제하기: 비밀번호를 눌러야 삭제 가능함(view()메서드와 같이 비밀번호가 맞아야만 삭제가 가능하다.
