@@ -1,6 +1,7 @@
 package com.kimyena.basicnoticeboard.reply.service;
 
 import com.kimyena.basicnoticeboard.post.db.PostEntity;
+import com.kimyena.basicnoticeboard.post.db.PostRepository;
 import com.kimyena.basicnoticeboard.reply.db.ReplyEntity;
 import com.kimyena.basicnoticeboard.reply.db.ReplyRepository;
 import com.kimyena.basicnoticeboard.reply.model.ReplyRequest;
@@ -15,13 +16,16 @@ import java.util.List;
 public class ReplyService {
 
     private final ReplyRepository replyRepository;
+    private final PostRepository postRepository;
 
     //댓글 생성 - 해당 게시글에 대한 댓글 달기
     public ReplyEntity create(
             ReplyRequest replyRequest
     ){
+        var postEntity = postRepository.findById(replyRequest.getPostId()).get();
+
         var entity = ReplyEntity.builder()
-                .postId(replyRequest.getPostId())
+                .post(postEntity)
                 .userName(replyRequest.getUserName())
                 .password(replyRequest.getPassword())
                 .status("REGISTERED")

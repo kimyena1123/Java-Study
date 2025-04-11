@@ -1,5 +1,7 @@
 package com.kimyena.basicnoticeboard.reply.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kimyena.basicnoticeboard.post.db.PostEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,7 +20,10 @@ public class ReplyEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long postId;
+    @ManyToOne
+    @JsonIgnore
+    @ToString.Exclude
+    private PostEntity post; // post + _id => post_id
 
     private String userName;
 

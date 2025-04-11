@@ -45,6 +45,8 @@ public class PostEntity {
     private LocalDateTime postedAt;
 
     //게시물을 보여줄 때 댓글도 같이 보여줘야 하기에
-    @Transient
+    @OneToMany(
+            mappedBy = "post"
+    )
     private List<ReplyEntity> replyList = Arrays.asList();
 }

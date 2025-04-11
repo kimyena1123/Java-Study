@@ -18,7 +18,6 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final BoardRepository boardRepository;
-    private final ReplyService replyService;
 
     public PostEntity create(
             PostRequest postRequest
@@ -52,14 +51,11 @@ public class PostService {
                         throw new RuntimeException(String.format(format, it.getPassword(), postViewRequest.getPassword()));
                     }
 
-                    //게시물을 보여줄 떄, 게시물에 달린 댓글도 같이 보여주기
-                    var replyList = replyService.findAllByPostId(it.getId());
-                    it.setReplyList(replyList);
-
                     return it;
+
                 }).orElseThrow(
                         () -> {
-                            return new RuntimeException("해당 게시물이 존재하지 않스니다. : " + postViewRequest.getPostId());
+                            return new RuntimeException("해당 게시물이 존재하지 않습니다 : " + postViewRequest.getPostId());
                         }
                 );
     }

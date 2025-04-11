@@ -3,6 +3,9 @@ package com.kimyena.basicnoticeboard.board.db;
 import com.kimyena.basicnoticeboard.post.db.PostEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DialectOverride;
+import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.annotations.Where;
 
 import java.util.List;
 
@@ -26,5 +29,8 @@ public class BoardEntity {
     @OneToMany(
             mappedBy = "board"
     )
+    @SQLRestriction("status = 'REGISTERED'") // @Where 어노테이션이 deprecated 되고, 그 대안책으로 사용되는 것이 @SQLRestriction
+    @OrderBy("id desc")
+    @Builder.Default
     private List<PostEntity> postList = List.of();
 }
