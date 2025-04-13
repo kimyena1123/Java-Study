@@ -3,8 +3,10 @@ package com.kimyena.basicnoticeboard.post.service;
 import com.kimyena.basicnoticeboard.board.db.BoardRepository;
 import com.kimyena.basicnoticeboard.common.Api;
 import com.kimyena.basicnoticeboard.common.Pagination;
+import com.kimyena.basicnoticeboard.crud.CRUDAbstractService;
 import com.kimyena.basicnoticeboard.post.db.PostEntity;
 import com.kimyena.basicnoticeboard.post.db.PostRepository;
+import com.kimyena.basicnoticeboard.post.model.PostDto;
 import com.kimyena.basicnoticeboard.post.model.PostRequest;
 import com.kimyena.basicnoticeboard.post.model.PostViewRequest;
 import com.kimyena.basicnoticeboard.reply.service.ReplyService;
@@ -17,9 +19,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PostService {
+public class PostService extends CRUDAbstractService<PostDto, PostEntity> {
 
-    private final PostRepository postRepository;
+    /*private final PostRepository postRepository;
     private final BoardRepository boardRepository;
 
     public PostEntity create(
@@ -40,11 +42,11 @@ public class PostService {
         return postRepository.save(entity);
     }
 
-    /*
+    *//*
     게시물(게시글) 한 개 보기 : 해당 게시물을 클릭하면, 비밀번호 입력 후 게시물을 볼 수 있다.
         1. 게시글이 있는가?
         2. 비밀번호가 맞는가?
-     */
+     *//*
     public PostEntity view(PostViewRequest postViewRequest) {
         return postRepository.findFirstByIdAndStatusOrderByIdDesc(postViewRequest.getPostId(), "REGISTERED") //해당 게시물의 아이디를 찾아서
                 .map(it->{
@@ -100,6 +102,6 @@ public class PostService {
 
                     return it;
                 });
-    }
+    }*/
 
 }

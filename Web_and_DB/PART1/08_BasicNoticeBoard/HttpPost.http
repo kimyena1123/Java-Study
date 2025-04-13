@@ -3,6 +3,7 @@ POST http://localhost:8080/api/post
 Content-Type: application/json
 
 {
+  "board_id": 1,
   "user_name" : "홍길동",
   "password" : "1111",
   "email" : "hong@gmail.com",
@@ -15,6 +16,7 @@ POST http://localhost:8080/api/post
 Content-Type: application/json
 
 {
+  "board_id": 2,
   "user_name" : "나길동",
   "password" : "2222",
   "email" : "hong@gmail.com",
@@ -27,9 +29,10 @@ POST http://localhost:8080/api/post
 Content-Type: application/json
 
 {
+  "board_id": 2,
   "user_name" : "test",
-  "password" : "3333",
-  "email" : "test@gmail.com",
+  "password" : "2222",
+  "email" : "hong@gmail.com",
   "title" : "문의드립니다.",
   "content" : "사이즈 오류로 인해, 교환하고 싶습니다. "
 }
@@ -52,7 +55,7 @@ POST http://localhost:8080/api/post/view
 Content-Type: application/json
 
 {
-  "post_id" : 1,
+  "post_id" : 31,
   "password" : "1111"
 }
 
@@ -65,27 +68,7 @@ Content-Type: application/json
 "password" : "2222"
 }
 
-//{
-//  "id": 1,
-//  "userName": "홍길동",
-//  "password": "1111",
-//  "email": "hong@gmail.com",
-//  "status": "REGISTERED",
-//  "title": "문의드립니다.",
-//  "content": "물건을 구매했는데, 배송이 오지 않습니다.",
-//  "postedAt": "2025-04-10T13:40:38",
-//  "replyList": [
-//    {
-//      "id": 1,
-//      "userName": "관리자",
-//      "password": "0000",
-//      "status": "REGISTERED",
-//      "title": "답변드립니다.",
-//      "content": "고객님꼐서 주문하신 물품은 ...~~~",
-//      "repliedAt": "2025-04-10T15:33:42"
-//    }
-//  ]
-//}
+
 
 
 ### 게시글 삭제
@@ -96,3 +79,8 @@ Content-Type: application/json
   "post_id" : 3,
   "password" : "2222"
 }
+
+###
+GET http://localhost:8080/api/post/all
+###
+GET http://localhost:8080/api/post/all?page=0&size=3

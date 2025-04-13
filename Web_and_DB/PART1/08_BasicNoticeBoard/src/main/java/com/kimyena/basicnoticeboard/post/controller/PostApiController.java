@@ -1,7 +1,9 @@
 package com.kimyena.basicnoticeboard.post.controller;
 
 import com.kimyena.basicnoticeboard.common.Api;
+import com.kimyena.basicnoticeboard.crud.CRUDAbstractApiController;
 import com.kimyena.basicnoticeboard.post.db.PostEntity;
+import com.kimyena.basicnoticeboard.post.model.PostDto;
 import com.kimyena.basicnoticeboard.post.model.PostRequest;
 import com.kimyena.basicnoticeboard.post.model.PostViewRequest;
 import com.kimyena.basicnoticeboard.post.service.PostService;
@@ -17,9 +19,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/post")
 @RequiredArgsConstructor
-public class PostApiController {
+public class PostApiController extends CRUDAbstractApiController<PostDto, PostEntity> {
 
-    private final PostService postService;
+    /*private final PostService postService;
 
     //게시물 생성
     @PostMapping("") //http://localhost:8080/api/post
@@ -56,6 +58,6 @@ public class PostApiController {
             @RequestBody PostViewRequest postViewRequest
     ){
         postService.delete(postViewRequest);
-    }
+    }*/
 
 }

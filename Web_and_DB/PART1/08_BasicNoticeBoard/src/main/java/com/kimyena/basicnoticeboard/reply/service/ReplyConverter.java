@@ -21,11 +21,11 @@ public class ReplyConverter implements Converter<ReplyDto, ReplyEntity> {
         return ReplyDto.builder()
                 .id(replyEntity.getId())
                 .postId(replyEntity.getPost().getId())
+                .userName(replyEntity.getUserName())
+                .password(replyEntity.getPassword())
                 .status(replyEntity.getStatus())
                 .title(replyEntity.getTitle())
                 .content(replyEntity.getContent())
-                .userName(replyEntity.getUserName())
-                .password(replyEntity.getPassword())
                 .repliedAt(replyEntity.getRepliedAt())
                 .build();
     }
@@ -38,11 +38,11 @@ public class ReplyConverter implements Converter<ReplyDto, ReplyEntity> {
         return ReplyEntity.builder()
                 .id(replyDto.getId()) //null이면 save(create)가 되고, null이 아니면 update가 될 것이다.
                 .post(postEntity.orElse(null))
+                .userName(replyDto.getUserName())
+                .password(replyDto.getPassword())
                 .status((replyDto.getStatus() != null) ? replyDto.getStatus() : "REGISTERED")
                 .title(replyDto.getTitle())
                 .content(replyDto.getContent())
-                .userName(replyDto.getUserName())
-                .password(replyDto.getPassword())
                 .repliedAt((replyDto.getRepliedAt() != null) ? replyDto.getRepliedAt() : LocalDateTime.now())
                 .build();
     }

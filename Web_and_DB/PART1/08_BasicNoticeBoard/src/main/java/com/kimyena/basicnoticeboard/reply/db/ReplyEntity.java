@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @ToString
 @Entity(name = "reply")
 public class ReplyEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,4 +36,5 @@ public class ReplyEntity {
     private String content;
 
     private LocalDateTime repliedAt;
+
 }

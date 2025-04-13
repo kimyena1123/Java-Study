@@ -4,6 +4,7 @@ import com.kimyena.basicnoticeboard.board.db.BoardEntity;
 import com.kimyena.basicnoticeboard.board.model.BoardDto;
 import com.kimyena.basicnoticeboard.board.model.BoardRequest;
 import com.kimyena.basicnoticeboard.board.service.BoardService;
+import com.kimyena.basicnoticeboard.crud.CRUDAbstractApiController;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/board")
 @RequiredArgsConstructor
-public class BoardApiController { //요청을 받기 위해선 model 필요
+public class BoardApiController extends CRUDAbstractApiController<BoardDto, BoardEntity> { //요청을 받기 위해선 model 필요
 
-    private final BoardService boardService;
+/*    private final BoardService boardService;
 
     //게시판 생성(예. Q&A 게시판, FAQ 게시판 등등..)
     @PostMapping("") //http://localhost:8080/api/board
@@ -36,6 +37,6 @@ public class BoardApiController { //요청을 받기 위해선 model 필요
 
         return boardService.view(id);
 
-    }
+    }*/
 
 }
