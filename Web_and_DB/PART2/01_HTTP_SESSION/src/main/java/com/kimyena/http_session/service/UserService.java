@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
+//    @Autowired
     private final UserRepository userRepository;
 
     public void login(
@@ -20,13 +21,17 @@ public class UserService {
         var id = loginRequest.getId();
         var pw = loginRequest.getPassword();
 
+        System.out.printf("사용자가 입력한 id: %s, pw: %s \n", id, pw);
+
         var optionalUser = userRepository.findByName(id); //사용자가 입력한 id를 repository에 넘겨서 repository에서 찾아서, 있는 id이면 해당 유저 정보를 넘겨준다.
-        System.out.println("repository에서 받은 optionalUser 정보: " + optionalUser); //optionalUser에는 해당 유저의 정보가 담겨있음
+
+        //optionalUser에는 해당 유저의 정보가 담겨있음
+        System.out.println("repository(DB)에서 받은 optionalUser 정보: " + optionalUser); // Optional[UserDto(name=짱구, password=1234)]
 
         if(optionalUser.isPresent()) { //사용자가 입력한 id값이 있다면(서버에 저장되어 있다면)
             //유저가 있으면 UserDto를 뽑아낸다.
             var userDto = optionalUser.get(); //서버에 입력되어 있는, 사용자가 입력한 id값
-            System.out.println("userDto: " + userDto.toString());
+            System.out.println("userDto: " + userDto.toString()); //UserDto(name=짱구, password=1234)
 
             if(userDto.getPassword().equals(pw)) { //사용자가 입력한 pw와 서버에 저장된 pw가 같다면
                 //id와 pw가 같으니, 세션에 정보 저장
