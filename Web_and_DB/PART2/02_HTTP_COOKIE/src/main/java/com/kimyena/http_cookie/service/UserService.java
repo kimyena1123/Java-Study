@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -44,5 +46,25 @@ public class UserService {
         }else{
             throw new RuntimeException("User Not Found");
         }
+    }
+
+    public String login2(
+            LoginRequest loginRequest,
+            HttpServletResponse httpServletResponse){
+        var id = loginRequest.getId();
+        var pw = loginRequest.getPassword();
+        var optionalUser = userRepository.findByName(id);
+
+        if(optionalUser.isPresent()){
+            var userDto = optionalUser.get();
+
+            if(userDto.getPassword().equals(pw)){
+                return userDto.getId();
+            }
+        }else{
+            throw new RuntimeException("User Not Found");
+        }
+
+        return null;
     }
 }
