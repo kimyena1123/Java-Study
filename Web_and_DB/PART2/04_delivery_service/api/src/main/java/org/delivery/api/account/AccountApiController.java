@@ -19,7 +19,7 @@ public class AccountApiController {
 
     private final AccountRepository accountRepository;
 
-    @GetMapping("/me")
+    @GetMapping("/me1")
     public Api<AccountMeResponse> me(){
         var response = AccountMeResponse.builder()
                 .name("홍길동")
@@ -31,7 +31,7 @@ public class AccountApiController {
         return Api.OK(response);
     }
 
-    @GetMapping("/me/errorcheck")
+    @GetMapping("/me2/errorcheck")
     public Api<Object> me_errorcheck(){
         var response = AccountMeResponse.builder()
                 .name("가나다")
@@ -42,5 +42,20 @@ public class AccountApiController {
 
         return Api.ERROR(UserErrorCode.USER_NOT_FOUND, "가나다 라는 사용자 없음");
         ///Response body >> { "result_code": 1404, "result_message": "사용자를 찾을 수 없음.","result_description": "가나다 라는 사용자 없음"}
+    }
+
+    @GetMapping("/me3/exceptioncheck")
+    public Api<AccountMeResponse> me_exceptioncheck(){
+        var response = AccountMeResponse.builder()
+                .name("가나다")
+                .email("A@gmail.com")
+                .registeredAt(LocalDateTime.now()) //ISO 8601 국제표준 형식
+                .build();
+
+        //예외 주기
+        var str = "안녕하세요";
+        var age = Integer.parseInt(str); //예외 발생
+
+        return Api.OK(response);
     }
 }
