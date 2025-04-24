@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 @AllArgsConstructor
-public enum ErrorCode implements ErrorCodeInterface{
+public enum ErrorCode implements ErrorCodeInterface{ //각각은 에러의 구체적인 사례를 Enum으로 관리
 
     OK(200, 200, "성공"),
     BAD_REQUEST(HttpStatus.BAD_REQUEST.value(), 400, "잘못된 요청"),
@@ -13,9 +13,7 @@ public enum ErrorCode implements ErrorCodeInterface{
     ;
 
     private final Integer httpStatusCode;
-
     private final Integer errorCode;
-
     private final String description;
 
 
