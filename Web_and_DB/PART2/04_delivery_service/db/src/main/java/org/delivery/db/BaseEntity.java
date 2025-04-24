@@ -4,7 +4,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 // Entity를 만들다 보면 createdAt, createdBy, updatedAt 그리고 updatedBy 등 반복되는 필드가 존재한다. 앞서 나열한 요소뿐만 아니라 서비스에 따라 Entity마다 공통되는 필드가 생기는 경우가 많다
@@ -13,6 +15,8 @@ import lombok.experimental.SuperBuilder;
 @MappedSuperclass
 @Data
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BaseEntity {
 
     @Id
