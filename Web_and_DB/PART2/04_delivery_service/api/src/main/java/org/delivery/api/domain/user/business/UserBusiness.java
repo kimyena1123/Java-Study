@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.delivery.api.common.annotation.Business;
 import org.delivery.api.common.error.ErrorCode;
 import org.delivery.api.common.exception.ApiException;
+import org.delivery.api.domain.user.controller.model.UserLoginRequest;
 import org.delivery.api.domain.user.controller.model.UserRegisterRequest;
 import org.delivery.api.domain.user.controller.model.UserResponse;
 import org.delivery.api.domain.user.converter.UserConverter;
@@ -52,5 +53,20 @@ public class UserBusiness { // 복잡한 로직들을 처리할 거다.
 
         //4. 해당 response를 return한다
         return response;
+    }
+
+    /**
+     * 1. email과 password를 가지고 사용자 체크
+     * 2. user eneity가 떨어지면 로그인 확인을 한다.
+     * 3. 로그인을 하면 token 생성
+     * 4. token을 resopnse로 내려주면 된다.
+     */
+    public UserResponse login(UserLoginRequest request){
+        //1. 사용자 체크
+        var userEntity = userService.login(request.getEmail(), request.getPassword()); //사용자 없으면 throw가 발생
+
+        // TODO 사용자가 있으면 token 생성
+
+        return userConverter.toResponse(userEntity);
     }
 }

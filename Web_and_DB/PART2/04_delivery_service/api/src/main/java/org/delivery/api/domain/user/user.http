@@ -1,0 +1,33 @@
+### 회원가입(register)
+POST http://localhost:8080/open-api/user/register
+Content-Type: application/json
+
+{
+  "result": {
+    "result_code": 1073741824,
+    "result_message": "string",
+    "result_description": "string"
+  },
+  "body": {
+    "name": "user3",
+    "email": "user3@gmail.com",
+    "password": "1234",
+    "address": "서울시 강남구"
+  }
+}
+
+### 로그인(login)
+POST http://localhost:8080/open-api/user/login
+Content-Type: application/json
+
+{
+  "result": {
+    "result_code": 1073741824,
+    "result_message": "string",
+    "result_description": "string"
+  },
+  "body": {
+    "email": "user2@gmail.com",
+    "password": "1234"
+  }
+}
