@@ -2,8 +2,14 @@ package org.delivery.api.domain.user.business;
 
 import lombok.RequiredArgsConstructor;
 import org.delivery.api.common.annotation.Business;
+import org.delivery.api.common.error.ErrorCode;
+import org.delivery.api.common.exception.ApiException;
+import org.delivery.api.domain.user.controller.model.UserRegisterRequest;
+import org.delivery.api.domain.user.controller.model.UserResponse;
 import org.delivery.api.domain.user.converter.UserConverter;
 import org.delivery.api.domain.user.service.UserService;
+
+import java.util.Optional;
 
 @Business // 내가 만든 커스텀 어노테이션
 @RequiredArgsConstructor
@@ -19,4 +25,32 @@ public class UserBusiness { // 복잡한 로직들을 처리할 거다.
 
     private final UserService userService;
     private final UserConverter userConverter;
+
+    //사용자에 대한 가입처리 로직: 해당 request를 entity로 바꿔주고 entity가 저장되면 된다.
+    //1. request -> entity로 바꿔주고
+    //2. entity를 save 하고 : UserService가 해준다.
+    //3. save된 entity를 -> response로 바꾸고
+    //4. response를 return한다.
+    public UserResponse register(UserRegisterRequest request){
+
+        //1. request -> entity로 바꿔주기
+        var entity = userConverter.toEntity(request);
+
+        //2. 바꾼 entity를 UserService로 보내서 save하기
+        var newEntity = userService.register(entity);
+
+        //3. save된 entity를 Converter를 통해 response로 바꾼다
+        var response = userConverter.toResponse(newEntity);
+
+
+        //위 내용을 람다식으로 표현
+        /*return Optional.ofNullable(request)
+                .map(userConverter::toEntity)
+                .map(userService::register)
+                .map(userConverter::toResponse)
+                .orElseThrow(()-> new ApiException(ErrorCode.NULL_POINT, "request Null"));*/
+
+        //4. 해당 response를 return한다
+        return response;
+    }
 }
