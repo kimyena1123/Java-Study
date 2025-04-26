@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.delivery.api.common.annotation.Business;
 import org.delivery.api.common.error.ErrorCode;
 import org.delivery.api.common.exception.ApiException;
+import org.delivery.api.domain.token.business.TokenBusiness;
+import org.delivery.api.domain.token.controller.model.TokenResponse;
 import org.delivery.api.domain.user.controller.model.UserLoginRequest;
 import org.delivery.api.domain.user.controller.model.UserRegisterRequest;
 import org.delivery.api.domain.user.controller.model.UserResponse;
@@ -26,6 +28,7 @@ public class UserBusiness { // 복잡한 로직들을 처리할 거다.
 
     private final UserService userService;
     private final UserConverter userConverter;
+    private final TokenBusiness tokenBusiness;
 
     //사용자에 대한 가입처리 로직: 해당 request를 entity로 바꿔주고 entity가 저장되면 된다.
     //1. request -> entity로 바꿔주고
@@ -61,12 +64,13 @@ public class UserBusiness { // 복잡한 로직들을 처리할 거다.
      * 3. 로그인을 하면 token 생성
      * 4. token을 resopnse로 내려주면 된다.
      */
-    public UserResponse login(UserLoginRequest request){
+    public TokenResponse login(UserLoginRequest request){
         //1. 사용자 체크
         var userEntity = userService.login(request.getEmail(), request.getPassword()); //사용자 없으면 throw가 발생
 
-        // TODO 사용자가 있으면 token 생성
+        // 사용자가 있으면 token 생성
+        var tokenResponse = tokenBusiness.issueToken(userEntity);
 
-        return userConverter.toResponse(userEntity);
+        return tokenResponse;
     }
 }
