@@ -43,10 +43,17 @@ public class UserService {
         return entity;
     }
 
-    public UserEntity getUserWithThrow(String email, String password
-    ){
+
+    public UserEntity getUserWithThrow(String email, String password){
         return userRepository.findFirstByEmailAndPasswordAndStatusOrderByIdDesc(email, password, UserStatus.REGISTERED)
                 .orElseThrow(() -> new ApiException(UserErrorCode.USER_NOT_FOUND));
     }
+
+    //사용자 정보 가져오기; overloading
+    public UserEntity getUserWithThrow(Long userId){
+        return userRepository.findFirstByIdAndStatusOrderByIdDesc(userId, UserStatus.REGISTERED)
+                .orElseThrow(() -> new ApiException(UserErrorCode.USER_NOT_FOUND));
+    }
+
 }
 

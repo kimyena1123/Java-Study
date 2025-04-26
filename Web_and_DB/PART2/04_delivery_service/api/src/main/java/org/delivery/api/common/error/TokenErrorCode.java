@@ -13,7 +13,8 @@ public enum TokenErrorCode implements ErrorCodeInterface{ //각각은 에러의 
     //인터페이스 규칙을 따르고 있다.
     INVALID_TOKEN(400, 2000, "유효하지 않은 토큰"), //HTTP 응답: 400, 에러 코드: 2000, 메시지: "유효하지 않은 토큰"
     EXPIRED_TOKEN(400, 2001, "만료된 토큰"), //HTTP 응답: 400, 에러 코드: 2001, 메시지: "만료된 토큰"
-    TOKEN_EXCEPTION(400, 2002, "알 수 없는 토큰 에러") //HTTP 응답: 400, 에러 코드: 2002, 메시지: "알 수 없는 토큰 에러"
+    TOKEN_EXCEPTION(400, 2002, "알 수 없는 토큰 에러"), //HTTP 응답: 400, 에러 코드: 2002, 메시지: "알 수 없는 토큰 에러"
+    AUTHORIAZATION_TOKEN_NOT_FOUND(400, 2003, "인증 헤더 토큰 없음"),
     ;
 
     private final Integer httpStatusCode;

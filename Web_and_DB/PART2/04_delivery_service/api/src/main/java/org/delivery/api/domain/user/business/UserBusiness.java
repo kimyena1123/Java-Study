@@ -1,6 +1,7 @@
 package org.delivery.api.domain.user.business;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.delivery.api.common.annotation.Business;
 import org.delivery.api.common.error.ErrorCode;
 import org.delivery.api.common.exception.ApiException;
@@ -11,7 +12,10 @@ import org.delivery.api.domain.user.controller.model.UserRegisterRequest;
 import org.delivery.api.domain.user.controller.model.UserResponse;
 import org.delivery.api.domain.user.converter.UserConverter;
 import org.delivery.api.domain.user.service.UserService;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Business // 내가 만든 커스텀 어노테이션
@@ -72,5 +76,16 @@ public class UserBusiness { // 복잡한 로직들을 처리할 거다.
         var tokenResponse = tokenBusiness.issueToken(userEntity);
 
         return tokenResponse;
+    }
+
+    /**
+     * 사용자는 로그인했기 때문에, 사용자 정보를 불러오기 : id로 해당 사용자의 정보 가져오기
+     * @return
+     */
+    public UserResponse me(Long userId){
+        var userEntity = userService.getUserWithThrow(userId);
+        var response = userConverter.toResponse(userEntity);
+
+        return response;
     }
 }
