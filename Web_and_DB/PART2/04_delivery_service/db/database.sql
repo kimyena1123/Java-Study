@@ -28,3 +28,19 @@ CREATE TABLE IF NOT EXISTS `user`(
 )ENGINE = InnoDB;
 
 DESC user;
+
+## ---------------------------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `delivery`.`store`(
+    `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(100) NOT NULL,
+    `address` VARCHAR(150) NOT NULL,
+    `status` VARCHAR(50) NOT NULL,
+    `category` VARCHAR(50) NOT NULL,
+    `star` DOUBLE DEFAULT 0,
+    `thumbnail_url` VARCHAR(200) NOT NULL,
+    `minimum_amount` DECIMAL(11,4) NOT NULL,
+    `minimum_delivery_amount` DECIMAL(11,4) NOT NULL,
+    `phone_number` VARCHAR(20) NOT NULL
+)ENGINE = InnoDB;
+
