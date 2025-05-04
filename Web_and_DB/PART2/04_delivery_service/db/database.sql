@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `user`(
 DESC user;
 
 ## ---------------------------------------------------------------------------------------------
+# 어떤 카테고리에 어떤 가게가 생겼는지. ex) COFFEE_TEA 카테고리에 메가커피 생김, 햄버거 카테고리에 노브랜드 버거 가게 생김 등등
 
 CREATE TABLE IF NOT EXISTS `delivery`.`store`(
     `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -43,4 +44,28 @@ CREATE TABLE IF NOT EXISTS `delivery`.`store`(
     `minimum_delivery_amount` DECIMAL(11,4) NOT NULL,
     `phone_number` VARCHAR(20) NOT NULL
 )ENGINE = InnoDB;
+
+## ---------------------------------------------------------------------------------------------
+# 한 가게가 갖고 있는 메뉴들(1:N 관계) -> store가 1, store_menu가 N이다.
+
+CREATE TABLE IF NOT EXISTS `delivery`.`store_menu`(
+    `id` BIGINT(32) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `store_id` BIGINT(32) NOT NULL,
+    `name` VARCHAR(100) NOT NULL,
+    `amount` DECIMAL(11,4) NOT NULL,
+    `status` VARCHAR(50) NOT NULL,
+    `thumbnail_url` VARCHAR(200),
+    `like_count` INT DEFAULT 0,
+    `sequence` INT DEFAULT 0
+)ENGINE = InnoDB;
+
+##--------- INDEX -----------
+# 인덱스는 책의 목차처럼, DB에서 데이터를 더 빠르게 찾기 위한 자료구조
+# 성능 최적화를 위한 **인덱스(index)**를 추가하는 명령어
+ALTER TABLE `delivery`.`store_menu` # delivery 데이터베이스의 store_menu 테이블을 수정하겠다는 뜻
+ADD INDEX `idx_store_id` # 	idx_store_id라는 이름의 인덱스를 추가함
+    (`store_id` ASC) VISIBLE; #	store_id 컬럼을 기준으로 오름차순 정렬로 인덱스를 생성, 인덱스를 보이게(VISIBLE) 설정
+
+
+
 
