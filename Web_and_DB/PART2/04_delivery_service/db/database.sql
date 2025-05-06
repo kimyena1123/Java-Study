@@ -67,5 +67,27 @@ ADD INDEX `idx_store_id` # 	idx_store_id라는 이름의 인덱스를 추가함
     (`store_id` ASC) VISIBLE; #	store_id 컬럼을 기준으로 오름차순 정렬로 인덱스를 생성, 인덱스를 보이게(VISIBLE) 설정
 
 
+## ---------------------------------------------------------------------------------------------
+# 상품 주문: 사용자가 상품을 주문하기 위한 테이블(1:N) <- user가 1, user_order가 N이다. 사용자는 여러개의 주문을 가질 수 있기 떄문.
+CREATE TABLE IF NOT EXISTS `delivery`.`user_order`(
+    `id` BIGINT(32) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `user_id` BIGINT(32) NOT NULL,
+    `status` VARCHAR(50) NOT NULL,
+    `amount` DECIMAL(11,4) NOT NULL, # 가격
+    `ordered_at` DATETIME NOT NULL, # 주문한 시간
+    `accepted_at` DATETIME NOT NULL,  # 가맹점쪽에서 주문 수락한 시간
+    `cooking_started_at` DATETIME NOT NULL, # 가게에서 요리를 시작한 시간
+    `delivery_started_at` DATETIME NOT NULL, # 배달원이 배달 시작한 시간
+    `received_at` DATETIME NOT NULL, # 사용자가 배달 받은 시간
+INDEX `idx_user_id`(`user_id` ASC) VISIBLE
+)ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `delivery`.`user_order_menu`(
+    `id` BIGINT(32) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `user_order_id` BIGINT(32) NOT NULL,
+    `store_menu_id` BIGINT(32) NOT NULL,
+    `status` VARCHAR(50) NOT NULL,
+INDEX `idx_user_order_id`(`user_order_id` ASC) VISIBLE,
+INDEX `idx_store_menu_id`(`store_menu_id`ASC) VISIBLE
+)ENGINE = InnoDB;
 
