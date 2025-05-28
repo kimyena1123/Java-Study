@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `delivery`.`user_order`(
     `amount` DECIMAL(11,4) NOT NULL, # 가격
     `ordered_at` DATETIME NOT NULL, # 주문한 시간
     `accepted_at` DATETIME NOT NULL,  # 가맹점쪽에서 주문 수락한 시간
-    `cooking_started_at` DATETIME NOT NULL, # 가게에서 요리를 시작한 시간
+    `cooking_started_ at` DATETIME NOT NULL, # 가게에서 요리를 시작한 시간
     `delivery_started_at` DATETIME NOT NULL, # 배달원이 배달 시작한 시간
     `received_at` DATETIME NOT NULL, # 사용자가 배달 받은 시간
 INDEX `idx_user_id`(`user_id` ASC) VISIBLE
