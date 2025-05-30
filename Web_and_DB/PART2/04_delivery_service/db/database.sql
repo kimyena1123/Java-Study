@@ -74,13 +74,24 @@ CREATE TABLE IF NOT EXISTS `delivery`.`user_order`(
     `user_id` BIGINT(32) NOT NULL,
     `status` VARCHAR(50) NOT NULL,
     `amount` DECIMAL(11,4) NOT NULL, # 가격
-    `ordered_at` DATETIME NOT NULL, # 주문한 시간
-    `accepted_at` DATETIME NOT NULL,  # 가맹점쪽에서 주문 수락한 시간
-    `cooking_started_ at` DATETIME NOT NULL, # 가게에서 요리를 시작한 시간
-    `delivery_started_at` DATETIME NOT NULL, # 배달원이 배달 시작한 시간
-    `received_at` DATETIME NOT NULL, # 사용자가 배달 받은 시간
+    `ordered_at` DATETIME, # 주문한 시간
+    `accepted_at` DATETIME,  # 가맹점쪽에서 주문 수락한 시간
+    `cooking_started_ at` DATETIME, # 가게에서 요리를 시작한 시간
+    `delivery_started_at` DATETIME, # 배달원이 배달 시작한 시간
+    `received_at` DATETIME, # 사용자가 배달 받은 시간
 INDEX `idx_user_id`(`user_id` ASC) VISIBLE
 )ENGINE = InnoDB;
+
+ALTER TABLE user_order
+    MODIFY COLUMN ordered_at DATETIME NULL,
+    MODIFY COLUMN accepted_at DATETIME NULL,
+    MODIFY COLUMN cooking_started_at DATETIME NULL,
+    MODIFY COLUMN delivery_started_at DATETIME NULL,
+    MODIFY COLUMN received_at DATETIME NULL;
+
+desc user_order;
+
+select * from user_order where user_id = 1;
 
 CREATE TABLE IF NOT EXISTS `delivery`.`user_order_menu`(
     `id` BIGINT(32) NOT NULL AUTO_INCREMENT PRIMARY KEY,
