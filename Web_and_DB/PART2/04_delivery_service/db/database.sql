@@ -91,3 +91,17 @@ INDEX `idx_user_order_id`(`user_order_id` ASC) VISIBLE,
 INDEX `idx_store_menu_id`(`store_menu_id`ASC) VISIBLE
 )ENGINE = InnoDB;
 
+
+# 스타벅스가 갖고 있는 메뉴 다 출력
+select * from store_menu where store_id = 1;
+
+# user1이 주문한 내역
+select * from user_order where user_id = 1;
+
+# user1이 주문한 상세내역 => 출력예시: 유저이름, 주문한 가게 이름, 총주문금액, 상세 주문 메뉴 이름, 상세 메뉴 가격
+select * from user
+                  JOIN user_order ON user.id = user_order.user_id
+                  JOIN user_order_menu ON user_order.id = user_order_menu.user_order_id
+                  JOIN store_menu ON store_menu.id = user_order_menu.store_menu_id
+                  JOIN store ON store.id = store_menu.store_id
+WHERE user.id = 1;
