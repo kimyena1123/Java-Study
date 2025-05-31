@@ -25,14 +25,21 @@ public class UserOrderService {
         return userOrderRepository.findAllByUserIdAndStatusOrderByIdDesc(userId, UserOrderStatus.REGISTERED);
     }
 
+
     //특정 주문 가져오기
     //SELECT * FROM user_order WHERE id = ? AND status = ? AND user_id = ?
     public UserOrderEntity getUserOrderWithThrow(Long id, Long userId){
 
+        //상태가 REGISTERED인 것만 보여준다. 그래서 주문이 ORDER이거나 COOKING 등의 상태이면 보여주지 않는다.
         return userOrderRepository.findAllByIdAndStatusAndUserId(id, UserOrderStatus.REGISTERED, userId)
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT));
     }
 
+    //REGISTERED인 상태만 보여주기에, 다른 상태일 때도 볼 수 있도록 하는 메소드
+    public UserOrderEntity getUserOrderWithOutStatusWithThrow(Long id, Long userId){
+        return userOrderRepository.findAllByIdAndUserId(id, userId)
+                .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT));
+    }
 
     // ========================= Status 상태에 따른 주문 내역 가져오기  =========================
     //SELECT * FROM user_order WHERE user_id = ? AND status in (?, ? .. ) ORDER BY id DESC
@@ -42,6 +49,7 @@ public class UserOrderService {
     }
 
     //현재 진행중인 내역
+    //SELECT * FROM user_order WHERE status IN (ORDER, COOKING, DELIVERY)
     public List<UserOrderEntity> current(Long userId){
         return getUserOrderList(
                 userId,
@@ -50,6 +58,7 @@ public class UserOrderService {
     }
 
     //과거에 내가 주문했던 내역
+    //SELECT * FROM user_order WHERE status = RECEIVE
     public List<UserOrderEntity> history(Long userId){
         return getUserOrderList(
                 userId,

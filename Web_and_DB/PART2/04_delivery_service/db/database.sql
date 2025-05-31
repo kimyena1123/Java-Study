@@ -116,3 +116,7 @@ select * from user
                   JOIN store_menu ON store_menu.id = user_order_menu.store_menu_id
                   JOIN store ON store.id = store_menu.store_id
 WHERE user.id = 1;
+
+
+select * from user_order_menu where user_order_id = 1;
+select * from user_order where id = 2 and user_id = 1;

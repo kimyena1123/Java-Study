@@ -19,6 +19,7 @@ public class StoreService {
     private final StoreRepository storeRepository;
 
     //유효한 스토어 가져오기
+    //SELECT * FROM store WHERE id = ? AND status = ? ORDER BY id DESC LIMIT 1;
     public StoreEntity getStoreWithThrow(Long id){
         var entity = storeRepository.findFirstByIdAndStatusOrderByIdDesc(id, StoreStatus.REGISTERED);
 
@@ -39,7 +40,8 @@ public class StoreService {
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT));
     }
 
-    //카테고리로 스토어 검색(예. 한식 선택하면 한식을 파는 가게(store) 리스트 나오기) select * from store where category = ? and status = ?
+    //카테고리로 스토어 검색(예. 한식 선택하면 한식을 파는 가게(store) 리스트 나오기)
+    //select * from store where category = ? and status = ?
     public List<StoreEntity> searchByCategory(StoreCategory storeCategory){
         var storeList = storeRepository.findAllByStatusAndCategoryOrderByStarDesc(StoreStatus.REGISTERED, storeCategory);
 
