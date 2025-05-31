@@ -13,8 +13,8 @@ public class UserOrderMenuConverter {
             StoreMenuEntity storeMenuEntity
     ){
         return UserOrderMenuEntity.builder()
-                .userOrderId(userOrderEntity.getId())
-                .storeMenuId(storeMenuEntity.getId())
+                .userOrderId(userOrderEntity.getId())//user_order_menu 테이블의 자체 컬럼이 아닌, user_order에서 가져온 것이기 때문
+                .storeMenuId(storeMenuEntity.getId())//user_order_menu 테이블의 자체 컬럼이 아닌, store_menu에서 가져온 것이기 때문
                 .build();
     }
 }

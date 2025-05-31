@@ -32,6 +32,7 @@ public class StoreMenuService {
     }
 
     //해당 id를 넘겨주면 해당 가게에 있는 store를 찾아서 리턴해준다
+    //select * from store_menu where id = ? and status = ? order by id desc;
     public StoreMenuEntity getStoreMenuWithThrow(Long id){
         var entity = storeMenuRepository.findFirstByIdAndStatusOrderByIdDesc(id, StoreMenuStatus.REGISTERED);
 
