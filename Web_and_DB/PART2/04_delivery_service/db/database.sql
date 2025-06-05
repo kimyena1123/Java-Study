@@ -120,3 +120,19 @@ WHERE user.id = 1;
 
 select * from user_order_menu where user_order_id = 1;
 select * from user_order where id = 2 and user_id = 1;
+
+## ==================== 가맹점 서버 개발 ============================
+# 특정 가게는 특정 user를 여러 명 가질 수 있다. => store_user는 가맹점 사장을 의미
+# ex) 스타벅스 가게는 => 안산점, 수원점 등 여러 명의 사장을 가질 수 있다. 그렇기에 store와 store_user는 1:N 관계
+CREATE TABLE IF NOT EXISTS `delivery`.`store_user`(
+    `id` BIGINT(32) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `store_id` BIGINT(32) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `password` VARCHAR(100) NOT NULL,
+    `status` VARCHAR(50) NOT NULL,
+    `role` VARCHAR(50) NOT NULL,# 사용자가 가지고 있는 권한
+    `registered_at` DATETIME NULL,
+    `unregistered_at`DATETIME NULL,
+    `last_login_at` DATETIME NULL,
+INDEX `idx_store_id`(`store_id` ASC) VISIBLE
+)ENGINE = InnoDB;
