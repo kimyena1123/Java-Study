@@ -1,6 +1,9 @@
 package org.delivery.storeadmin.domain.authorization;
 
 import lombok.RequiredArgsConstructor;
+import org.delivery.db.store.StoreRepository;
+import org.delivery.db.store.enums.StoreStatus;
+import org.delivery.storeadmin.domain.authorization.model.UserSession;
 import org.delivery.storeadmin.domain.user.service.StoreUserService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -44,21 +47,32 @@ public class AuthorizationService implements UserDetailsService { //UserDetailsS
 
     //StoreUserService: 유저 정보를 DB에서 가져오는 서비스 클래스 (DB 직접 접근은 하지 않음)
     private final StoreUserService storeUserService;
+    private final StoreRepository storeRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { //Spring Security가 로그인 시 호출하는 메소드. 로그인 시 입력한 username(email)이 여기에 들어옴
 
         //사용자가 있는지 확인. 이메일(username)에 해당하는 유저를 DB에서 조회 (Optional<StoreUserEntity>)
         var storeUserEntity = storeUserService.getRegisterUser(username);
+        var storeEntity = storeRepository.findFirstByIdAndStatusOrderByIdDesc(storeUserEntity.get().getStoreId(), StoreStatus.REGISTERED);
 
         return storeUserEntity.map(it -> { //유저가 있으면 Spring Security에서 사용할 수 있는 User 객체로 만들어 반환
-            var user = User.builder()
-                .username(it.getEmail())
-                .password(it.getPassword())
-                .roles(it.getRole().toString())
-                .build();
 
-            return user;
+            var userSession = UserSession.builder()
+                    .userId(it.getId())
+                    .password(it.getPassword())
+                    .email(it.getEmail())
+                    .status(it.getStatus())
+                    .role(it.getRole())
+                    .registeredAt(it.getRegisteredAt())
+                    .unregisteredAt(it.getUnregisteredAt())
+                    .lastLoginAt(it.getLastLoginAt())
+
+                    .storeId(storeEntity.get().getId())
+                    .storeName(storeEntity.get().getName())
+                    .build();
+
+            return userSession;
         })
         .orElseThrow(() -> new UsernameNotFoundException(username)); //유저가 없으면 예외 던짐 → 로그인 실패 처리됨
 

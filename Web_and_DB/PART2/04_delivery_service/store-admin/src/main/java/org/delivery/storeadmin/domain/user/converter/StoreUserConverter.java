@@ -5,6 +5,7 @@ import org.delivery.db.store.StoreRepository;
 import org.delivery.db.store.enums.StoreStatus;
 import org.delivery.db.storeuser.StoreUserEntity;
 import org.delivery.storeadmin.common.annotation.Converter;
+import org.delivery.storeadmin.domain.authorization.model.UserSession;
 import org.delivery.storeadmin.domain.user.controller.model.StoreUserRegisterRequest;
 import org.delivery.storeadmin.domain.user.controller.model.StoreUserResponse;
 
@@ -50,5 +51,28 @@ public class StoreUserConverter {
                 )
                 .build();
 
+    }
+
+    //StoreUserApiController에서 사용하는 용도(html에서 사용자 정보를 보내주기 위해)
+    public StoreUserResponse toResponse(UserSession userSession){
+        return StoreUserResponse.builder()
+            .user(
+                    StoreUserResponse.UserResponse.builder()
+                            .id(userSession.getUserId())
+                            .email(userSession.getEmail())
+                            .status(userSession.getStatus())
+                            .role(userSession.getRole())
+                            .registeredAt(userSession.getRegisteredAt())
+                            .unregisteredAt(userSession.getUnregisteredAt())
+                            .lastLoginAt(userSession.getLastLoginAt())
+                            .build()
+            )
+            .store(
+                    StoreUserResponse.StoreResponse.builder()
+                            .id(userSession.getStoreId())
+                            .name(userSession.getStoreName())
+                            .build()
+            )
+            .build();
     }
 }
