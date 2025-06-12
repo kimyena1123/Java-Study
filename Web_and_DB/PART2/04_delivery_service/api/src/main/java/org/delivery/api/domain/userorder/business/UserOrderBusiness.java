@@ -9,6 +9,7 @@ import org.delivery.api.domain.userorder.converter.UserOrderConverter;
 import org.delivery.api.domain.userorder.model.UserOrderDetailResponse;
 import org.delivery.api.domain.userorder.model.UserOrderRequest;
 import org.delivery.api.domain.userorder.model.UserOrderResponse;
+import org.delivery.api.domain.userorder.producer.UserOrderProducer;
 import org.delivery.api.domain.userorder.service.UserOrderService;
 import org.delivery.api.domain.userordermenu.converter.UserOrderMenuConverter;
 import org.delivery.api.domain.userordermenu.service.UserOrderMenuService;
@@ -29,7 +30,7 @@ public class UserOrderBusiness {
     private final StoreService storeService;
     private final StoreMenuConverter storeMenuConverter;
     private final StoreConverter storeConverter;
-
+    private final UserOrderProducer userOrderProducer; //가맹점 서버에 주문 알림 보내기
 
     /*  사용자 주문(INSERT): 사용자 정보와 request 정보를 받아 user_order과 user_order_menu 테이블에 저장한다
         controller에서 로그인된 사용자 정보(user)와 가게 메뉴 id들(store_menu의 id)이 담겨있는 request(request에는 List가 있다)를 보냄
@@ -74,8 +75,11 @@ public class UserOrderBusiness {
                 }).toList();
 
 
-        //위 상세 메뉴들을 user_order_menu 테이블에 insert(save)한다.
+        //주문내역 기록 남기기 : 위 상세 메뉴들을 user_order_menu 테이블에 insert(save)한다.
         userOrderMenuEntityList.forEach(userOrderMenuService::order);
+
+        //비동기로 가맹점에 주문 알리기(rabbitmq 사용)
+        userOrderProducer.sendOrder(newUserOrderEntity); //비동기로 사용자의 주문이 날라가게 된다
 
         //response
         return userOrderConverter.toResponse(newUserOrderEntity);
