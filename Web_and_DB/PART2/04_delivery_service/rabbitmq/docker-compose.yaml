@@ -1,0 +1,22 @@
+# docker-compose 파일의 버전을 명시한다.
+# 여기선 3.7 버전을 사용하고 있으며, Docker Compose 기능과 호환성에 영향을 준다.
+version: '3.7'
+
+# services는 '컨테이너'라고 불리는 가상 애플리케이션들을 정의하는 섹션
+services:
+  rabbitmq:
+    # 사용할 RabbitMQ 이미지(프로그램 패키지)를 명시
+    # latest는 가장 최신 버전을 가져오라는 의미
+    image: rabbitmq:latest
+
+    # [포트 포워딩 설정]
+    # 왼쪽은 '내 컴퓨터'의 포트, 오른쪽은 '도커 안의 프로그램'의 포트임
+    # 즉, 내 컴퓨터의 5672 포트 → 도커 컨테이너의 5672 포트로 연결됨
+    ports:
+      - "5672:5672"   # RabbitMQ에서 메시지를 주고받는 기본 통신 포트임(프로그램용)
+      - "15672:15672" # RabbitMQ 관리 웹 UI (웹 브라우저에서 열 수 있는 포트)
+
+    # 환경변수를 설정. 이건 RabbitMQ 초기 설정에 사용된다
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin       # 초기 관리자 계정의 아이디 (기본사용자 이름)
+      - RABBITMQ_DEFAULT_PASS=admin123!@# # 초기 관리자 계정의 비밀번호(기본사용자 비밀번호)
