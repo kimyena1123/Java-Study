@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class HealthOpenApiController {
 
-    private final Producer producer;
+//    private final Producer producer; // 더이상 동작하지 않도록 주석처리.
 
     @GetMapping("/health")
     public void health(){
