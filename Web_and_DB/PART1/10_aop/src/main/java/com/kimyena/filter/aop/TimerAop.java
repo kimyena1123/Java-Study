@@ -17,6 +17,7 @@ public class TimerAop {
     @Pointcut(value = "within(com.kimyena.filter.controller.UserApiController)") //주의: Spring에서 관리되고 있는 Bean들에게만 Spring AOP가 동작하도록 되어 있다.
     public void timerPointCut(){}
 
+
     @Before(value = "timerPointCut()")
     public void before(JoinPoint joinPoint ){
         System.out.println("before");
