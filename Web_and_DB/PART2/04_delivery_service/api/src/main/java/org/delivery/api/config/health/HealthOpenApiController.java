@@ -20,6 +20,6 @@ public class HealthOpenApiController {
         log.info("### health call ###");
 
         //rabbitmq 테스트
-        producer.producer("delivery.exchange", "delivery.key", "hello");
+//        producer.producer("delivery.exchange", "delivery.key", "hello"); // 더이상 동작하지 않도록 주석처리.
     }
 }
