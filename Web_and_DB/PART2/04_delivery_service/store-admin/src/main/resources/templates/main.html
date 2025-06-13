@@ -20,16 +20,51 @@
 </body>
 
 <script>
+
+    /**
+     * SSE: 서버가 클라이언트(브라우저)에게 일방적(단방향)으로 실시간 메시지를 푸시(Push)하는 방식이다.
+     * 1. 브라우저는 먼저 서버에 "연결 요청"을 보내고, 2. 서버는 이 연결을 계속 유지한 채 실시간 데이터를 푸시한다.
+     *
+     * [흐름 정리 - 택배 배송을 예시로]
+     * 1단계: 문을 열고 기다림(enw EventSource()) - 브라우저가 서버에 연결을 요청하고 문을 연다
+     * 2단계: 택배 기사 도착(onopen) - 연결이 성공하면 브라우저는 "연결됐어!"하고 알려준다
+     * 3단계: 택배 받음(onmessage 또는 addEventListener) - 서버가 실시간 데이터(택배)를 보낸다
+     * 4단계: 연결 유지 - 택배가 여러 번 올 수 있도록 계속 연결된 상태 유지
+     *
+     * onopen 역할 - 연결 성공 알림 : 클라이언트가 서버와 연결에 성공했을 때 자동으로 실행되는 함수
+                                : 연결이 제대로 됐는지 확인하고 싶을 떄 사용함.
+     *
+     * onmessage 역할: 기본 메시지 수신 : 서버가 보내주는 실시간 데이터를 받아서 화면에 표시해야 하기에 필요함.
+     *
+     */
     const url = "http://localhost:8081/api/sse/connect"; //접속주소
     const eventSource = new EventSource(url); //sse 연결
 
-    eventSource.onopen = event => {
-        console.log("sse connection ");
+    /**
+     * onopen VS onmessage
+     *
+     * onopen: SSE 연결이 성공적으로 열렸을 때(서버와 연결되었을 때) 자동으로 실행되는 콜백함수이다.
+     *  -언제 실행? new EventSource(url)했을 때, 서버와 연결이 정상적으로 수립되면 실행된다
+     *  -무엇을 위한 것? 연결이 정상적으로 열렸는지 확인하거나, 연결 직후 초기화 로직(ex. 로딩화면 제거, 버튼 활성화 등)을 하기 위해 사용
+     *  -서버가 별도로 메시지를 보낼 필요가 없다. 이건 브라우저가 자동으로 실행하는 이벤트이다.
+     *
+     * onmessage: 서버가 기본 메시지(event name없이 .data만 있는)를 보냈을 때 실행되는 콜백함수이다.
+     *  -언제실행? 서버가 SSE 형시으로 데이터를 보낼 때, 클라이언트가 이걸 받기 위해 사용한다
+     *  -언제사용? 서버에서 실시간 메시지를 보내줄 때(기본 메시지)
+     *  -기본메시지란? (data:hello) 이와 같이 이벤트 이름없이 data:만 보내면 onmessage가 실행된다
+     *  -특정 이벤트 이름으로 보내줄 때는? 예를 들어 (event: something)으로 보낸다면 -> onmessage가 아닌, addEventlistener('something',..)으로 작성해야 함
+     *  -사용목적? 서버가 실시간으로 푸시하는 메시지를 받을 때 사용한다. (ex. 주문 알림, 실시간 채팅, 주식 시세 등)
+     *
+     *
+     *
+     */
+    eventSource.onopen = event => { //클라이언트에게 연결성공을 서버가 명시적으로 알려주고 싶을 때 사용.
+        console.log("sse connection(sse 연결 성공) ");
         console.log(event);
     }
 
     eventSource.onmessage = event => {
-        console.log("receive data : " + event.data); //서버로부터 받은 데이터
+        console.log("receive data(기본 메시지 수신) : " + event.data); //서버로부터 받은 데이터
     }
 
 </script>

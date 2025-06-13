@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.delivery.storeadmin.domain.authorization.model.UserSession;
+import org.delivery.storeadmin.domain.sse.connection.model.UserSseConnection;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +46,8 @@ public class SseApiController {
 
         //2. 로그인한 유저의 userId를 key로 하여 emitter 저장
         userConnection.put(userSession.getUserId().toString(), emitter);
+
+        var temp = new UserSseConnection(userSession.getStoreId().toString(),emitter);
 
         /**
          * 3. 클라이언트와 연결이 일정 시간 동안 유지되지 않으면 타임아웃 발생
