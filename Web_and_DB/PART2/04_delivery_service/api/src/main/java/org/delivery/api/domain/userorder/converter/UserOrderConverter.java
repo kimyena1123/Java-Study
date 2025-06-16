@@ -14,7 +14,11 @@ public class UserOrderConverter {
 
     // controller에서 로그인된 사용자 정보와 사용자가 주문한 상세 주문 메뉴들(store_menu 테이블의 id들)을 받아 entity화
     // 여러 메뉴가 List에 담겨있음(4,5 이와 같은 숫자로 들어가 있다)
-    public UserOrderEntity toEntity(User user, List<StoreMenuEntity> storeMenuEntityList){
+    public UserOrderEntity toEntity(
+            User user,
+            Long storeId,
+            List<StoreMenuEntity> storeMenuEntityList
+    ){
 
         //해당 List를 stream으로 돌면서 해당 id에 해당하는 amount를 가져온다. 가져온 amount들을 더해서 총합을 구한다.
         var totalAmount = storeMenuEntityList.stream()
@@ -24,6 +28,7 @@ public class UserOrderConverter {
         //위 총주문금액을 구하고 eneity화
         return UserOrderEntity.builder()
                 .userId(user.getId())
+                .storeId(storeId)
                 .amount(totalAmount)
                 .build();
     }

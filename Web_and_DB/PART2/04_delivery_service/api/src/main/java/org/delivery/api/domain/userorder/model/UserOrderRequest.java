@@ -12,6 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 public class UserOrderRequest {
 
+    @NotNull
+    private Long storeId;
+
     //사용자 주문을 위한 request
     //주문 => 특정 사용자가 => 특정 메뉴를 주문
     //특정 사용자란 => 로그인된 세션에 들어있는 사용자를 의미

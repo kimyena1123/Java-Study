@@ -57,7 +57,7 @@ public class UserOrderBusiness {
 
         //request를 entity로 바꾸기
         //위 4,5번 메뉴의 가격을 합친 후, 하나의 entity로 나온다. 즉, 위의 상세메뉴들에 대한 하나의 총 주문 내역이(user_order) 나오는 것임
-        var userOrderEntity = userOrderConverter.toEntity(user, storeMenuEntityList);
+        var userOrderEntity = userOrderConverter.toEntity(user, userOrderRequest.getStoreId() ,storeMenuEntityList);
 
         //entity를 save하기: Service에서(주문하기)
         //위 userOrderEntity를 user_order 테이블에 insert(save)한다

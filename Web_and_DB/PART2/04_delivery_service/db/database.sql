@@ -139,3 +139,16 @@ CREATE TABLE IF NOT EXISTS `delivery`.`store_user`(
     `last_login_at` DATETIME NULL,
 INDEX `idx_store_id`(`store_id` ASC) VISIBLE
 )ENGINE = InnoDB;
+
+# user_order 테이블에 store_id 컬럼을 추가(store 테이블의 id를 참조)
+-- 1. 컬럼 추가
+ALTER TABLE delivery.user_order
+    ADD COLUMN store_id BIGINT(32) NOT NULL AFTER user_id;
+
+# store_id에 외래 키 제약 조건 추가
+-- 2. 외래 키 추가
+ALTER TABLE delivery.user_order
+    ADD CONSTRAINT fk_user_order_store
+        FOREIGN KEY (store_id) REFERENCES store(id)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE;
