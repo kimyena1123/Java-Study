@@ -70,6 +70,7 @@ public class SseApiController {
     ){
         // [1] 해당 사장님의 연결 객체를 pool에서 조회
         var userSseConnection = sseConnectionPool.getSession(userSession.getStoreId().toString());
+        System.out.println("SseApiController 에서 pool 조회  >> " + userSseConnection);
 
         // [2] 연결이 존재한다면 메시지 전송
         Optional.ofNullable(userSseConnection)
