@@ -27,3 +27,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# MySQL 데이터 폴더 무시
+/Web_and_DB/PART1/06_docker-compose/mysql/mysql_data_docker/
